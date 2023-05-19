@@ -34,7 +34,7 @@ export default function Page() {
           </Button>
           </div>
           <div className=" text-center mb-2">OR</div>
-          <div className="mb-2">
+          <div className="mb-4">
             <Input label="Email" handler={handleEmail} value={email}/>
           </div>
           
