@@ -26,7 +26,7 @@ export default function Page() {
           <Logo/>
         </div>
 
-        <div className="flex flex-col justify-center mt-4 mx-auto w-3/4 bg-[#fafafa] md:bg-white w-[90vw]  md:w-3/4 h-2/3 border-2 border-black md:border-none rounded-xl p-4  ">
+        <div className="flex flex-col justify-center mt-4 mx-auto w-3/4 bg-[#fafafa] md:bg-white w-[90vw]  md:w-3/4 h-2/3 border border-black md:border-none rounded-xl p-4  ">
           <h1 className="text-2xl font-bold mb-4">Sign In</h1>
           <div className="mb-4">
             <Button text="Sign in with Google" backGroundColor="bg-white" handler={handleSignInGoogle}>
