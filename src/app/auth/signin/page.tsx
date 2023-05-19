@@ -42,8 +42,10 @@ export default function Page() {
       setEmail("")
     }
   }
-  const handleSignInGoogle = () => {
-    
+  const handleSignInGoogle = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  })
   }
   return (
     <div className="relative flex flex-col md:flex-row h-screen">
