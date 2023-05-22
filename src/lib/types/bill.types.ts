@@ -4,9 +4,9 @@ export interface Bill {
   name:string,
   price:string,
   paid?:boolean,
-  category:string,
+  category?:string,
   reminder?:number | null,
-  nextdue: DateType | undefined,
+  nextdue?: DateType | undefined,
   userId: string | undefined
 
 }
