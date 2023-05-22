@@ -1,6 +1,6 @@
 import { DateType } from "react-tailwindcss-datepicker/dist/types";
 
-export interface Bill {
+export interface iBill {
   name:string,
   price:string,
   paid?:boolean,
@@ -9,4 +9,16 @@ export interface Bill {
   nextdue?: DateType | undefined,
   userId: string | undefined
 
+}
+
+
+
+export interface iRetrievedBill {
+  id: string,
+  title: string,
+  price: string,
+  category?: string,
+  reminder?:string,
+  date?: string,
+  paid: boolean
 }

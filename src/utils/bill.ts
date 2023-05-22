@@ -1,4 +1,4 @@
-import { Bill } from "@/lib/types/bill.types";
+import { iBill } from "@/lib/types/bill.types";
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
@@ -15,7 +15,7 @@ export const createNewBill = async (
   reminder,
   nextdue,
   userId
-}:Bill
+}:iBill
 ) => {
   try {
     const { data, error } = await supabase
@@ -42,96 +42,101 @@ export const createNewBill = async (
 
 // get a bill
 
+
+export const formatCurrency = (number:number) => {
+  const formattedNumber = number.toLocaleString("en-KE", {
+    style: "currency",
+    currency: "KES",
+  });
+  return formattedNumber;
+};
 // get all bills
-// export const getAllBills = async () => {
-//   try {
-//     const { data, error } = await supabase.from("Bills").select();
-//     if (error) {
-//       throw Error(error);
-//     }
-//     let total = 0;
-//     for (let i in data) {
-//       total += data[i].price;
-//     }
-//     let formattedTotal = formatCurrency(total);
-//     return { data, total: formattedTotal };
-//   } catch (error) {
-//     return {
-//       error: error.message,
-//     };
-//   }
-// };
+export const getAllBills = async (userId: string) => {
+  try {
+    const { data, error } = await supabase.from("Bills").select().eq("user_id",userId);
+    if (error) {
+      throw Error(error.message);
+    }
+    let total = 0;
+    for (let i in data) {
+      total += data[i].price;
+    }
+    let formattedTotal = formatCurrency(total);
+    return { data, total: formattedTotal };
+  } catch (error:any) {
+    return {
+      data: null,
+      formattedTotal: null,
+      error: error.message,
+    };
+  }
+};
 
-// export const getAllUnpaidBills = async () => {
-//   try {
-//     const { data, error } = await supabase
-//       .from("Bills")
-//       .select()
-//       .eq("paid", false);
-//     if (error) {
-//       throw Error(error);
-//     }
-//     let total = 0;
-//     for (let i in data) {
-//       total += data[i].price;
-//     }
-//     let formattedTotal = formatCurrency(total);
-//     return { data, total: formattedTotal };
-//   } catch (error) {
-//     return {
-//       error: error.message,
-//     };
-//   }
-// };
+export const getAllUnpaidBills = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("Bills")
+      .select()
+      .eq("paid", false);
+    if (error) {
+      throw new Error(error.message);
+    }
+    let total = 0;
+    for (let i in data) {
+      total += data[i].price;
+    }
+    let formattedTotal = formatCurrency(total);
+    return { data, total: formattedTotal };
+  } catch (error: any) {
+    return {
+      error: error.message,
+    };
+  }
+};
 
-// const getDayDifference = (nextdue) => {
-//   const today = new Date(); // Get today's date
-//   const dueDate = new Date(nextdue); // Set due date
+const getDayDifference = (nextdue:string) => {
+  const today = new Date(); // Get today's date
+  const dueDate = new Date(nextdue); // Set due date
 
-//   // Calculate the difference between the dates in milliseconds
-//   const differenceMs = dueDate.getTime() - today.getTime();
+  // Calculate the difference between the dates in milliseconds
+  const differenceMs = dueDate.getTime() - today.getTime();
 
-//   // Convert the difference to days and round to the nearest integer
-//   const differenceDays = Math.round(differenceMs / 86400000);
-//   return differenceDays;
-// };
+  // Convert the difference to days and round to the nearest integer
+  const differenceDays = Math.round(differenceMs / 86400000);
+  return differenceDays;
+};
 
 
-// export const getDueDays = (nextdue) => {
-//   const differenceDays = getDayDifference(nextdue);
+export const getDueDays = (nextdue:string) => {
+  const differenceDays = getDayDifference(nextdue);
+  let due = nextdue;
+  let overdue = false
+  if (differenceDays == 7) {
+    due = "In 1 week";
+  } else if (differenceDays < 0) {
+    due = `Overdue by ${differenceDays * -1} ${
+      differenceDays == -1 ? "day" : "days"
+    }`;
+    overdue = true
+  } else if (differenceDays == 0) {
+    due = "Due today";
+  } else if (differenceDays < 7) {
+    due = `In ${differenceDays} ${differenceDays == -1 ? "day" : "days"}`;
+  } else {
+    due = `Due on ${nextdue}`;
+  }
+  return {due, overdue};
+};
 
-//   let due = nextdue;
-//   if (differenceDays == 7) {
-//     due = "In 1 week";
-//   } else if (differenceDays < 0) {
-//     due = `Overdue by ${differenceDays * -1} ${
-//       differenceDays == -1 ? "day" : "days"
-//     }`;
-//   } else if (differenceDays == 0) {
-//     due = "Due today";
-//   } else if (differenceDays < 7) {
-//     due = `In ${differenceDays} ${differenceDays == -1 ? "day" : "days"}`;
-//   } else {
-//     due = `Due on ${nextdue}`;
-//   }
-//   return due;
-// };
+export const dueSoon = (nextdue:string) => {
+  const days = getDayDifference(nextdue);
+  if (days <= 7) {
+    return true;
+  }
+  return false;
+};
 
-// export const dueSoon = (nextdue) => {
-//   const days = getDayDifference(nextdue);
-//   if (days <= 7) {
-//     return true;
-//   }
-//   return false;
-// };
 
-// export const formatCurrency = (number:number) => {
-//   const formattedNumber = number.toLocaleString("en-KE", {
-//     style: "currency",
-//     currency: "KES",
-//   });
-//   return formattedNumber;
-// };
 
 // export const getBillById = async (id:string) => {
 //   try {
