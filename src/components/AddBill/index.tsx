@@ -1,6 +1,5 @@
 "use client"
 import { createNewBill } from "@/utils/bill";
-import { getValue } from "@/utils/helper";
 import { useState } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import { DateValueType } from "react-tailwindcss-datepicker/dist/types";
@@ -56,8 +55,8 @@ const AddBill = ({userId}:{userId: string|undefined}) => {
         const target = event.target as HTMLUListElement;
         if (target.tagName === 'LI') {
             const categoryName = target.innerText;
-            const value = getValue(categoryName, categories)
-            setCategory({ name:categoryName, value: value });
+            const value  = target.getAttribute('data-value');
+            setCategory({ name:categoryName, value: Number(value) });
         }
     };
 
@@ -65,8 +64,8 @@ const AddBill = ({userId}:{userId: string|undefined}) => {
         const target = event.target as HTMLUListElement;
         if (target.tagName === 'LI') {
             const reminderName = target.innerText;
-            const value = getValue(reminderName, reminders)
-            setReminder({ name: reminderName, value });
+            const value  = target.getAttribute('data-value');
+            setReminder({ name: reminderName, value: Number(value) });
         }
     };
 
