@@ -3,12 +3,14 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Logo from "@/components/Logo";
 import { useSupabase } from "@/providers/supabase-provider";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Page() {
 
-  const {supabase} = useSupabase()
+  const {supabase, session} = useSupabase()
+  const router = useRouter()
 
   const [email, setEmail] = useState("")
   const [isSent, setisSent] = useState(false)
@@ -47,6 +49,13 @@ export default function Page() {
     provider: 'google',
   })
   }
+  useEffect(() => {
+    if(session) {
+     router.push('/bills/add');
+  } 
+  }, [session, router]);
+  
+  
   return (
     <div className="relative flex flex-col md:flex-row h-screen">
 
