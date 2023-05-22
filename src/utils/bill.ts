@@ -11,7 +11,6 @@ export const createNewBill = async (
   {
   name,
   price,
-  paid,
   category,
   reminder,
   nextdue,
@@ -21,7 +20,7 @@ export const createNewBill = async (
   try {
     const { data, error } = await supabase
       .from("Bills")
-      .insert({ name, price, category, paid, reminder, nextdue, userId })
+      .insert({ name, price, category, reminder, nextdue, user_id:userId })
       .select();
     if (error) {
       throw Error(error.message);
