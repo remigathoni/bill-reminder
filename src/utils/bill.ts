@@ -25,9 +25,12 @@ export const createNewBill = async (
     if (error) {
       throw Error(error.message);
     }
-    return data;
+    return {
+      data, error
+    };
   } catch (error:any) {
     return {
+      data: null,
       error: error.message,
     };
   }
