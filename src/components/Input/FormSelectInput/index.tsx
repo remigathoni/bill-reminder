@@ -9,7 +9,7 @@ interface FormSelectInput {
 export default function FormSelectInput({selected, handleFn, items, label}:FormSelectInput) {
   return (
     <div className=' flex justify-between mt-4'>
-        <div className='text-sm text-gray-600'>{label}</div>
+        <div className=' text-gray-600'>{label}</div>
         <Select selected={selected} handleSelected={handleFn}  items={items} />
     </div>  )
 }

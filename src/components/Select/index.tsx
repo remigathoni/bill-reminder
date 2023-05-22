@@ -21,7 +21,7 @@ export default function Select({items, handleSelected, selected}:select) {
   return (
     <div className='relative flex flex-col justify-end  pr-2 '>
               <button
-                className="  inline-flex justify-end items-center text-gray-600 hover:text-gray-900 text-xs md:text-sm text-right bg-white focus:ring-blue-300 font-medium" 
+                className="  inline-flex justify-end items-center text-gray-600 hover:text-gray-900  text-right bg-white focus:ring-blue-300 font-medium" 
                 type="button"
                 onClick={handleDropDown}>
                   <div className={`${isOpen?"text-amber-600":""}`}>{selected?selected: "Select"}</div> 
@@ -31,7 +31,7 @@ export default function Select({items, handleSelected, selected}:select) {
         className={`z-10 absolute top-8 right-0 w-44 bg-white rounded divide-y divide-gray-100 shadow w-44 ${
           isOpen ? "flex justify-end" : "hidden"
         }`}>
-    <ul className=" w-full py-2 text-xs md:text-sm text-right bg-white text-gray-800" aria-label="Bill categories" onClick={handleSelected}>
+    <ul className=" w-full py-2  text-right bg-white text-gray-800" aria-label="Bill categories" onClick={handleSelected}>
       {items.map((item, index) => (
         <li key={index} data-value={item.value} className=" px-4 py-2 hover:bg-gray-100 cursor-pointer select-none capitalize" onClick={handleClick}>{item.name}
       </li>

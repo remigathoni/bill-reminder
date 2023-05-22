@@ -126,16 +126,24 @@ const AddBill = ({userId}:{userId: string|undefined}) => {
          
    
   return (
-    <div className="w-full md:w-2/3 mx-auto p-2 border rounded">
+    <div className="w-full md:w-2/3 mx-auto mt-4 p-2 border rounded">
         <ActionNav handleFn={handleSave} label="Add Bill" action="Save"/>
         <section>
             {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             {errors.price && <p className="text-red-500 text-sm">{errors.price}</p>}
             {errors.save && <Notification type="Error" description={errors.save} duration={5000}/>}
-            <FormInput label="Name" type="text" onChangeFn={handleName} value={name} placeholder="Bill name" />
+            <div className="mb-6">
+              <FormInput label="Name" type="text" onChangeFn={handleName} value={name} placeholder="Bill name" />
+            </div>
+
+            <div className="mb-6">
             <FormInput label="Amount" type="number" onChangeFn={handlePriceChange} value={price} placeholder="Ksh.00" />
-            <FormSelectInput selected={category.name} handleFn={handleCategory}  items={categories} label="Category"/>
-            <div className=' flex justify-between mt-4'>
+            </div>
+
+            <div className="mb-6">
+              <FormSelectInput selected={category.name} handleFn={handleCategory}  items={categories} label="Category"/>
+            </div>
+            <div className=' flex justify-between mb-6'>
             <div className='text-sm text-gray-600'>Next Bill</div>
               <Datepicker 
                 useRange={false} 
