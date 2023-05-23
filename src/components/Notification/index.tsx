@@ -37,7 +37,7 @@ export default function Notification({ type, description, duration }: iNotificat
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -100, opacity: 0 }}
-          className={`flex z-10 fixed right-4 bottom-4 mb-4 p-2 w-3/4 md:w-1/3 border rounded justify-between text-xs align-center ${containerClassNames}
+          className={`flex z-10 fixed right-4 top-4 mb-4 p-2 w-3/4 md:w-1/3 border rounded justify-between text-xs align-center ${containerClassNames}
             `}
         >
           <p className="text-gray-900 font-thin tracking-wide">{description}</p>

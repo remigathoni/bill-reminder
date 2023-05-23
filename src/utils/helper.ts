@@ -1,3 +1,5 @@
+import { selectItem } from "@/lib/types/bill.types";
+
 export const toTitleCase = (str:string) => {
   const arr = str.split(" ");
 
@@ -8,10 +10,7 @@ export const toTitleCase = (str:string) => {
   return titledString;
 };
 
-type item = {
-  name:string,
-  value:Number
-}
+ type item = selectItem
 type itemsArr = item[]
 
 export const reminders = [
@@ -60,6 +59,13 @@ export const getCategory = (category:string, categories:itemsArr) => {
 };
 
 export const getInitialValue = (value:Number, arr:itemsArr) => {
-  const data = arr.find((obj) => obj.value === value);
-  return data;
+  let data = arr.find((obj) => obj.value === value) || {
+      name: "",
+      value: ""
+    }
+  return data 
 };
+
+export const getToday = () => {
+    return new Date().toISOString().slice(0, 10)
+  }

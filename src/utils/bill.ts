@@ -201,25 +201,25 @@ export async function markAsUnpaid(id:string) {
 
 // Update a bill
 
-// export const updateBillById = async (id:string, updates:string) => {
-//   try {
-//     const { data, error } = await supabase
-//       .from("Bills")
-//       .update(updates)
-//       .eq("id", id);
-//     if (error) throw Error(error.message);
-//     return { error: null };
-//   } catch (error) {
-//     return { error };
-//   }
-// };
+export const updateBillById = async (id:string, updates:object) => {
+  try {
+    const { data, error } = await supabase
+      .from("Bills")
+      .update(updates)
+      .eq("id", id);
+    if (error) throw Error(error.message);
+    return { error: null };
+  } catch (error) {
+    return { error };
+  }
+};
 
-// export const deleteBillById = async (id:string) => {
-//   try {
-//     const { error } = await supabase.from("Bills").delete().eq("id", id);
-//     if (error) throw Error(error.message);
-//     return { error: null };
-//   } catch (error) {
-//     return { error };
-//   }
-// };
+export const deleteBillById = async (id:string) => {
+  try {
+    const { error } = await supabase.from("Bills").delete().eq("id", id);
+    if (error) throw Error(error.message);
+    return { error: null };
+  } catch (error) {
+    return { error };
+  }
+};
