@@ -9,7 +9,7 @@ interface LinkBtn {
 }
 const LinkBtn = ({href, text, bgColor}: LinkBtn) => {
     return (
-        <Link href={href} className={` font-semibold`}>
+        <Link href={href} className={` font-medium`}>
             <motion.button 
                 whileHover={{ scale: 0.98, backgroundColor:"#f1f2eb" }}
                 whileTap={{ scale: 0.99 }}

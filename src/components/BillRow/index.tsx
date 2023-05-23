@@ -30,7 +30,7 @@ export default function BillRow({id, title, date, price, category, paid}:iBill) 
         </div>
         <div className={` p-2  text-left  leading-none`}>{`${paid?"Paid": dueData.due}`}</div>
         
-        <div className={ `flex items-center justify-center p-2 text-sm w-24 text-center rounded ${paid?"bg-green-500 text-white ":dueData.overdue?"bg-amber-600 text-white":"bg-slate-200 text-gray-700"}`}>
+        <div className={ `flex items-center justify-center p-2 text-sm w-24 text-center rounded ${paid?"text-green-500  ":dueData.overdue?"text-amber-600 ":"text-gray-700 "}`}>
                 {paid?"paid ":dueData.overdue?"overdue":"unpaid"}
         </div>
         
