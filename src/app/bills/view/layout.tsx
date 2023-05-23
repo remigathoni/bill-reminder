@@ -4,7 +4,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Bill reminder',
+  title: 'View bill',
   description: 'Track all your monthly bills from the same place',
 }
 
