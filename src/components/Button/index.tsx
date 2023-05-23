@@ -15,9 +15,10 @@ type ButtonProps = {
     <motion.button 
     whileHover={{ scale: 1.01, backgroundColor:"#f1f2eb" }}
     whileTap={{ scale: 0.99 }}
-    className={` p-2 rounded-lg border-2 border-black ${backGroundColor}`} onClick={handler}>
+    className={`flex items-center justify-center p-2 rounded-lg border-2 border-black w-full  ${backGroundColor}`} onClick={handler}>
         <div className="flex items-center">
-          {children}            
+          {children && <div className='mr-2'>{children} </div>}
+                     
             <div className="text-sm md:text-md">{text}</div>
         </div>
         

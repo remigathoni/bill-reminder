@@ -19,7 +19,7 @@ export default function Page() {
     const { data, error } = await supabase.auth.signInWithOtp({
     email: email,
     options: {
-      emailRedirectTo: 'http://localhost:3000',
+      emailRedirectTo: process.env.NEXT_PUBLIC_HOME_URL,
     },
   })
   if(!error) {
