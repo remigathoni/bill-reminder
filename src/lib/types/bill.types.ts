@@ -22,3 +22,8 @@ export interface iRetrievedBill {
   date?: string,
   paid: boolean
 }
+
+export type selectItem = {
+  name:string,
+  value:Number | string | null
+}

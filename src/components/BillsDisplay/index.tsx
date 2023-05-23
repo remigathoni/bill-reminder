@@ -1,6 +1,7 @@
 import { dueSoon, formatCurrency, getAllBills, getAllUnpaidBills } from '@/utils/bill';
 import Image from 'next/image';
 import BillsList from '../BillList';
+import LinkBtn from '../Button/LinkBtn';
 import DueList from '../DueList';
 
 async function getData(userId:string) {
@@ -41,6 +42,7 @@ export default async function BillsDisplay({userId}:{userId:string}) {
     
   return (
     <div className=' w-full md:w-2/3 mx-auto mt-4 p-2 border rounded'>
+      <LinkBtn href='/bills/add' text='+ Add Bill' bgColor='bg-yellow-950'/>
       <section className=' mt-8'>
         <div className="flex justify-between p-2  " style={{backgroundColor: "#F4F1F2"}}>
             <div className=" font-medium">Due soon</div>
@@ -72,7 +74,7 @@ export default async function BillsDisplay({userId}:{userId:string}) {
           <Image src="../taken.svg" alt="" width={200} height={200}/>
         </section>
             <p className=" text-center py-2">This is where all bills usually are but its empty at the moment.  
-            Add your first bill by clicking the “+” button.</p>
+            Add your first bill by clicking the “+” button at the top.</p>
         </div>:<div className='py-4'><BillsList data = {data}/></div>}
         </section>
     </div>

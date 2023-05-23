@@ -1,4 +1,4 @@
-import ViewBill from '@/components/ViewBill';
+import EditBill from '@/components/EditBill';
 import { getBillById } from '@/utils/bill';
 import { Josefin_Sans } from 'next/font/google';
 
@@ -13,19 +13,18 @@ const jssans = Josefin_Sans( {weight: '400',
 
   return res.data;
 }
+
 export const revalidate =0
-export default async function Page({searchParams}:{searchParams:any}) {
- 
-  const id = searchParams.id
-  const bill = await getData(id)
-    
+export default async function Page({
+  searchParams,
+}:{searchParams: {id: string}}) {
+     const id = searchParams.id
+     
+    const bill = await getData(id)
+
   return (
     <main className={jssans.className}>
-      {bill &&<>
-        <ViewBill bill={bill || []}/>
-        
-        </>  }
-       
+        {bill && <EditBill bill={bill}/>}
     </main>
   )
 }
