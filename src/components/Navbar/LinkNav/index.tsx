@@ -1,13 +1,14 @@
 "use client"
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { BsChevronLeft } from "react-icons/bs"
-interface ActionNav {
-    handleFn?:() => void,
-    label: string,
-    action: string
+interface LinkNav {
+    href: string,
+    text: string,
+    label: string
 }
-export default function ActionNav({handleFn, label, action}:ActionNav) {
+export default function LinkNav({href, text, label}:LinkNav) {
   const router = useRouter()
   return (
     <nav className="flex justify-between text-sm font-semibold tracking-widest mt-4 pb-2 border-b-2">
@@ -19,11 +20,11 @@ export default function ActionNav({handleFn, label, action}:ActionNav) {
           </motion.button>
 
           
-        <motion.button 
+        <motion.div 
                 whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.99 }} className="text-yellow-950" onClick={handleFn}>
-            {action}
-        </motion.button>
+                whileTap={{ scale: 0.99 }} className="text-yellow-950">
+            <Link href={href}>{text}</Link>
+        </motion.div>
     </nav>
   )
 }

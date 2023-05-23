@@ -6,8 +6,8 @@ export interface iBill {
   paid?:boolean,
   category?:string,
   reminder?:number | null,
-  nextdue?: DateType | undefined,
-  userId: string | undefined
+  nextdue?: DateType | undefined | string,
+  userId: string | undefined,
 
 }
 
