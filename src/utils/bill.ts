@@ -138,18 +138,18 @@ export const dueSoon = (nextdue:string) => {
 
 
 
-// export const getBillById = async (id:string) => {
-//   try {
-//     const { data, error } = await supabase.from("Bills").select().eq("id", id);
-//     if (error) throw Error(error.message);
-//     return { data, error: null };
-//   } catch (error) {
-//     return {
-//       data: null,
-//       error: error.message,
-//     };
-//   }
-// };
+export const getBillById = async (id:string) => {
+  try {
+    const { data, error } = await supabase.from("Bills").select().eq("id", id);
+    if (error) throw Error(error.message);
+    return { data, error: null };
+  } catch (error:any) {
+    return {
+      data: null,
+      error: error.message,
+    };
+  }
+};
 
 // const getNextDueDate = (currentDueDate, frequency) => {
 //   // Parse the current due date string into a Date object
@@ -164,47 +164,40 @@ export const dueSoon = (nextdue:string) => {
 //   return nextDueDate.toISOString().slice(0, 10);
 // };
 
-// export const markAsPaid = async (id:string, currentDueDate:Date, frequency:number) => {
-//   // update the bill
-//   // const nextDueDate = getNextDueDate(currentDueDate, frequency);
-//   try {
-//     const { error } = await supabase
-//       .from("Bills")
-//       .update({ paid: true })
-//       .eq("id", id);
+export const markAsPaid = async (id:string) => {
+  // update the bill
+  try {
+    const { error } = await supabase
+      .from("Bills")
+      .update({ paid: true })
+      .eq("id", id);
 
-//     if (error) throw Error(error.message);
-//     return { error: null };
-//   } catch (error) {
-//     return {
-//       error: error.message,
-//     };
-//   }
+    if (error) throw Error(error.message);
+    return { error: null };
+  } catch (error:any) {
+    return {
+      error: error.message,
+    };
+  }
 
-//   // mark paid
-// };
+  // mark paid
+};
 
-// export async function markAsUnpaid(id, currentDueDate, frequency) {
-//   try {
-//     const bill = await getBillById(id);
-//     if (bill.error) throw Error(bill.error);
-//     console.log(bill.data[0].paid);
-//     if (bill.data[0].paid) {
-//       let currentDate = new Date(currentDueDate);
-//       let nextDueDate = new Date(
-//         currentDate.getTime() - frequency * 24 * 60 * 60 * 1000
-//       );
-//       const { error } = await supabase
-//         .from("Bills")
-//         .update({ paid: false, nextdue: nextDueDate })
-//         .eq("id", id);
-//       if (error) throw Error(error.message);
-//     }
-//     return { error: null };
-//   } catch (error) {
-//     return { error: error.message };
-//   }
-// }
+export async function markAsUnpaid(id:string) {
+  try {
+    const bill = await getBillById(id);
+    if (bill.error) throw Error(bill.error);
+    const { error } = await supabase
+        .from("Bills")
+        .update({ paid: false })
+        .eq("id", id);
+      if (error) throw Error(error.message);
+    
+    return { error: null };
+  } catch (error:any) {
+    return { error: error.message };
+  }
+}
 
 // Update a bill
 
