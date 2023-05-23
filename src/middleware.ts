@@ -8,12 +8,11 @@ export async function middleware(req: NextRequest) {
   const supabase = createMiddlewareSupabaseClient({ req, res });
     
   const { data: { session } } = await supabase.auth.getSession(); // destructure the data object to obtain the session object
-  
   if (session === null) return NextResponse.redirect(new URL("/auth/signin", req.nextUrl));
     
   return res;
 }
     
 export const config = {
-  matcher: ["/bills/add"], // add the routes you wish the middleware to run in. You can also use regex
+  matcher: ["/bills/:path*"], // add the routes you wish the middleware to run in. You can also use regex
 };

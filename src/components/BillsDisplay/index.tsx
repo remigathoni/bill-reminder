@@ -5,7 +5,7 @@ import LinkBtn from '../Button/LinkBtn';
 import DueList from '../DueList';
 
 async function getData(userId:string) {
-  const res = await getAllBills(userId);
+  const res:any = await getAllBills(userId);
   // Recommendation: handle errors
   if (res.error) {
     console.log(res.error)
@@ -39,11 +39,10 @@ export default async function BillsDisplay({userId}:{userId:string}) {
       totalDue += billsDue[i].price;
     }
     let formattedTotalDue = formatCurrency(totalDue);
-    
   return (
     <div className=' w-full md:w-2/3 mx-auto mt-4 p-2 border rounded'>
-      <LinkBtn href='/bills/add' text='+ Add Bill' bgColor='bg-yellow-950'/>
-      <section className=' mt-8'>
+      <LinkBtn href='/bills/add' text='+ Add New Bill' bgColor='bg-yellow-950'/>
+      <section className=' mt-2'>
         <div className="flex justify-between p-2  " style={{backgroundColor: "#F4F1F2"}}>
             <div className=" font-medium">Due soon</div>
             <div className="font-medium ">{billsDue?formattedTotalDue:"Ksh.00"}</div>
@@ -69,7 +68,7 @@ export default async function BillsDisplay({userId}:{userId:string}) {
             <div className=" font-medium ">All bills</div>
             <div className="font-medium ">{data?total:"Ksh.00"}</div>
         </div>
-        {!data?<div className="flex flex-col justify-center items-center p-4">
+        {!data.length?<div className="flex flex-col justify-center items-center p-4">
             <section>
           <Image src="../taken.svg" alt="" width={200} height={200}/>
         </section>
