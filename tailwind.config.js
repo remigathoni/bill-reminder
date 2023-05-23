@@ -16,6 +16,10 @@ module.exports = {
       blur: {
         xs: "2px",
       },
+      backgroundImage: {
+        "hero-desktop": "url('/hero-desktop.svg')",
+        "hero-mobile": "url('/hero-mobile.svg')",
+      },
     },
   },
   plugins: [],
