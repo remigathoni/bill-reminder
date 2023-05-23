@@ -23,14 +23,14 @@ export default function BillRow({id, title, date, price, category, paid}:iBill) 
       setisVisible(false)
     }
   return (
-    <Link href={`/bills/view/?id=${id}`} className={`flex flex-row justify-between p-2 bg-transparent transition-colors hover:bg-gray-100 border-b border-t w-full  `} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+    <Link href={`/bills/view/?id=${id}`} className={`flex flex-row justify-between p-2 bg-transparent items-left transition-colors hover:bg-gray-100 border-b border-t w-full  `} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
         <div className="">
             <h1 className=" leading-none mb-2 font-medium">{title}</h1>
-            <div className="  ">Ksh. {price}</div>
+            <div className=" text-xs md:text-sm ">Ksh. {price}</div>
         </div>
-        <div className={` p-2  text-left  leading-none`}>{`${paid?"Paid": dueData.due}`}</div>
+        <div className={` p-2 text-xs md:text-sm  text-left  leading-none`}>{date}</div>
         
-        <div className={ `flex items-center justify-center p-2 text-sm w-24 text-center rounded ${paid?"text-green-500  ":dueData.overdue?"text-amber-600 ":"text-gray-700 "}`}>
+        <div className={ `flex items-center justify-center p-2 text-xs md:text-sm  w-24 text-center rounded ${paid?"text-green-500  ":dueData.overdue?"text-amber-600 ":"text-gray-700 "}`}>
                 {paid?"paid ":dueData.overdue?"overdue":"unpaid"}
         </div>
         

@@ -16,7 +16,7 @@ export default async function Layout({
 
   
   return (
-    <main className={`${inter.className} px-6 py-4`}>
+    <main className={`${inter.className} px-4 md:px-6 py-4`}>
           <MainNav/>
           {children}
     </main>

@@ -28,12 +28,12 @@ export default function DueRow({title, date, price, category, id}:iRetrievedBill
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
 
     >
-    <Link href={`/bills/view/?id=${id}`} className={`flex  justify-between px-2 py-4 ${colors[isCategory as keyof colors]} w-full rounded`}>
+    <Link href={`/bills/view/?id=${id}`} className={`flex  justify-between px-2 py-4 ${colors[isCategory as keyof colors] || colors["default"]} w-full rounded`}>
         <div className="">
             <h1 className=" leading-none mb-2">{title}</h1>
-            <p className=" text-gray-600 leading-none tracking-wide">{dueData.due}</p>
+            <p className="text-xs  text-gray-600 leading-none tracking-wide">{dueData.due}</p>
         </div>
-        <div className="  tracking-widest">Ksh. {price}</div>
+        <div className=" ">Ksh. {price}</div>
     </Link>
     </motion.div>
   )

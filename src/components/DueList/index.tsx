@@ -78,7 +78,7 @@ export default function DueList({data}:DueList) {
         onMouseLeave={handleMouseLeave}
         onScroll={handleScroll}>
         {data.map((item:any) => {
-            return(<motion.li className="flex-[0_0_50%] md:flex-[0_0_40%]  mr-2 select-none" key={item.id}><DueRow id={item.id}  title={item.name}  price={item.price} date={item.nextdue} category={item.category} paid={item.paid}/></motion.li>) 
+            return(<motion.li className="flex-[0_0_80%] md:flex-[0_0_40%]  mr-2 select-none" key={item.id}><DueRow id={item.id}  title={item.name}  price={item.price} date={item.nextdue} category={item.category} paid={item.paid}/></motion.li>) 
         } )}
     </motion.ul>
     </>
