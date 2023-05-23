@@ -5,6 +5,7 @@ import { useState } from "react";
 import { formatCurrency, markAsPaid, markAsUnpaid } from "@/utils/bill";
 import { reminders, toTitleCase } from "@/utils/helper";
 import Button from '../Button';
+import LinkNav from '../Navbar/LinkNav';
 
 export default  function ViewBill({bill}:{bill: { [x: string]: any; }[]}) {
   const router = useRouter();
@@ -31,8 +32,10 @@ export default  function ViewBill({bill}:{bill: { [x: string]: any; }[]}) {
   }
     if(!bill) return <p>Bill not found</p>
   return (
-    <div>
-    <section className='w-full md:w-2/3 mx-auto mt-4 p-2 border rounded'>
+    <div className='w-full md:w-2/3 mx-auto mt-4 p-2 border rounded'>
+      <LinkNav label={bill[0].name} href={`/bills/edit/?id=${bill[0].id}`} text='Edit'/>
+
+    <section >
           <div className=' flex justify-between mt-4'>
             <div className='font-medium '>Name</div>
             <div
