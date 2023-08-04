@@ -89,8 +89,7 @@ let initialCategory = getInitialValue(bill[0].category, categories)
       let updatedErrs = errors
         if(!price || !name) return
          try {
-        
-        const result = await updateBillById(bill[0].id, {name, price, category, reminder, nextdue})
+        const result = await updateBillById(bill[0].id, {name, price, category:category?.name, reminder:reminder?.value, nextdue:nextdue?.startDate})
         if(result.error) {
           throw Error()          
         }
@@ -98,6 +97,7 @@ let initialCategory = getInitialValue(bill[0].category, categories)
         router.push("bills/all")
       
       } catch (error) {
+        console.log(error)
         updatedErrs.save = `Could not add ${name} bill. Please try again later`
         setErrors(updatedErrs)
       }
