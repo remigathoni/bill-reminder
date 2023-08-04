@@ -51,7 +51,7 @@ export default function Page() {
   }
   useEffect(() => {
     if(session) {
-     router.push('/bills/add');
+     router.push('/bills/all');
   } 
   }, [session, router]);
   
