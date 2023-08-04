@@ -1,7 +1,19 @@
+"use client"
 import LinkBtn from "@/components/Button/LinkBtn";
 import MainNav from "@/components/Navbar/Main";
+import { useSupabase } from "@/providers/supabase-provider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const {session} = useSupabase()
+  const router = useRouter()
+  useEffect(() => {
+    console.log(session)
+    if(session) {
+     router.push('/bills/all');
+  } 
+  }, [session, router]);
   return (
     <div className="relative px-6 pt-4 min-h-screen">
     <MainNav/>
