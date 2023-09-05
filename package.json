@@ -17,7 +17,7 @@
     "dayjs": "^1.11.7",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
-    "framer-motion": "^10.12.12",
+    "framer-motion": "^10.12.14",
     "next": "13.4.2",
     "node-fetch": "^2.6.11",
     "postcss": "8.4.23",
