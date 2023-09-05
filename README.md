@@ -1,34 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bill Reminder App
 
-## Getting Started
+![Bill Reminder App Screenshot](https://cfgeifcecsxiephkyogp.supabase.co/storage/v1/object/sign/Images/bill-reminder-home.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJJbWFnZXMvYmlsbC1yZW1pbmRlci1ob21lLnBuZyIsImlhdCI6MTY5MzkxNTA5OSwiZXhwIjoxNzI1NDUxMDk5fQ.Xl1jd_KUF5pBGUeODSJDxNu97oVE9brc7BcTVEa-PNs&t=2023-09-05T11%3A58%3A18.752Z)
 
-First, run the development server:
+See [live demo]()
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The Bill Reminder App is a web application built with Supabase and Next.js that helps users keep track of their bills and receive timely reminders through email when bills are due. This project provides a user-friendly interface for adding, managing, and receiving notifications for bills.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Frontend:**  React(Next.js)
+- **Backend:** Supabase (Database, Authentication, Edge functions)
+- **Email Notifications:** Sendgrid API
+- **Deployment:** Vercel
 
-## Learn More
+## Usage
+- Sign up or log in to your account using Google or via a magic link.
+- Add your bills, specifying the bill name, bill type, and due date
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The Supabase Edge function will check the bills daily at midnight and send email reminders for due bills. Find the [edge function that sends reminders in this repo](https://github.com/remigathoni/supabase-edge-email-reminders).
